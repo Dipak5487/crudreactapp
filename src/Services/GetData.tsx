@@ -18,7 +18,6 @@ const GetData = () => {
          .then((response) => response.json())
          .then((data) => {
             setPosts(data);
-            console.log("get locall date", data);
          })
          .catch((err) => {
             console.log(err.message);
@@ -29,7 +28,6 @@ const GetData = () => {
 
 
    function handleDelete(e: any) {
-      console.log("vale herer of e", e)
       fetch(`https://localhost:44396/api/User/${e}`, {
          method: 'DELETE'
       })
@@ -56,7 +54,7 @@ const GetData = () => {
                <TableBody>
                   {items.map((item: any) => (
                      <TableRow
-                        key={item.name}
+                        key={item.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                      >
                         <TableCell align="right">{item.id}</TableCell>
@@ -66,6 +64,7 @@ const GetData = () => {
                         <TableCell align="right">{item.country}</TableCell>
                         <TableCell align="right">{item.mobileNumber}</TableCell>
                         <Button variant="contained" color='error' onClick={() => handleDelete(item.id)}> Delete</Button>
+
                      </TableRow>
                   ))}
                </TableBody>
